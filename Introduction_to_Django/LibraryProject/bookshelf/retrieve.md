@@ -1,6 +1,6 @@
 # Commands 
 
-books = Book.objects.all()
+Book.objects.get
 
 print("Title:", book_1.title)
 print("Author:", book_1.author)
