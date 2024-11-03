@@ -1,4 +1,8 @@
 # command
+
+from bookshelf.models import Book
+book.delete
+
 del book_1
 
 try:
