@@ -5,3 +5,4 @@ Library.objects.get(name=library_name)
 
 objects.filter(author=author)
 
+Librarian.objects.get(library=)
