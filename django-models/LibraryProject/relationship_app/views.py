@@ -1,13 +1,15 @@
 from django.shortcuts import render
-from django.views.generic import DetailView
 from .models import Book
-from .models import Library
+
 
 # Create your views here.
 def book_list(request):
     books = Book.objects.all()
     context = {'list_books':books}
     return render(request, relationship_app/list_books.html, context)
+
+from django.views.generic.detail import DetailView
+from .models import Library
 
 class LibraryDetailView(DetailView):
     model = Library
