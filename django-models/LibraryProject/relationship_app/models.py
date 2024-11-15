@@ -56,3 +56,23 @@ def create_or_update_user_profile(sender, instance, created, **kwargs):
         UserProfile.objects.create(user=instance)
     else:
         instance.userprofile.save()
+
+# custom permissions
+
+from django.db import models
+
+class Book(models.Model):
+    title = models.CharField(max_length=100)
+    author = models.CharField(max_length=100)
+    publication_year = models.IntegerField()
+    
+    # Define permissions
+    class Meta:
+        permissions = [
+            ('can_add_book', 'Can add book'),
+            ('can_change_book', 'Can edit book'),
+            ('can_delete_book', 'Can delete book'),
+        ]
+
+    def __str__(self):
+        return self.title
