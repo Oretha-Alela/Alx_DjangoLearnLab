@@ -39,8 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'bookshelf.apps.BookshelfConfig',
     'relationship_app.apps.RelationshipAppConfig',
-    'accounts_app.apps.AccountsAppConfig',
-
 ]
 
 MIDDLEWARE = [
@@ -125,8 +123,3 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-# advanced_features_and_security/settings.py
-
-AUTH_USER_MODEL = 'accounts_app.CustomUser'
-
