@@ -152,3 +152,39 @@ SECURE_HSTS_SECONDS = 31536000  # Enforce HTTPS for a year
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True  # Apply to all subdomains
 SECURE_HSTS_PRELOAD = True  # Include in browser preload list
 
+# settings.py
+
+# Enforce HTTPS redirection
+SECURE_SSL_REDIRECT = True  # All HTTP requests will be redirected to HTTPS
+
+# HTTP Strict Transport Security (HSTS) Settings
+SECURE_HSTS_SECONDS = 31536000  # 1 year
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True  # Apply HSTS to all subdomains
+SECURE_HSTS_PRELOAD = True  # Allow preloading in browser HSTS list
+
+# Ensure that HTTP request headers (e.g., X-Forwarded-Proto) are handled properly when using a reverse proxy
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')  # Required if behind a load balancer or proxy
+
+# Make sure that Django only serves your app via HTTPS in production
+DEBUG = False  # Ensure Debug is False in production
+
+# settings.py
+
+# Ensure session cookies are only sent over HTTPS
+SESSION_COOKIE_SECURE = True  # Ensure session cookies are only transmitted over HTTPS
+
+# Ensure CSRF cookies are only sent over HTTPS
+CSRF_COOKIE_SECURE = True  # CSRF cookies will only be sent over HTTPS
+
+
+# settings.py
+
+# Prevent the site from being framed (clickjacking protection)
+X_FRAME_OPTIONS = 'DENY'  # Don't allow the site to be embedded in a frame
+
+# Prevent browsers from sniffing the MIME type of a response
+SECURE_CONTENT_TYPE_NOSNIFF = True  # Ensures content types are respected
+
+# Enable the browser's XSS filter to prevent cross-site scripting (XSS) attacks
+SECURE_BROWSER_XSS_FILTER = True  # Enables XSS filter in modern browsers
+
