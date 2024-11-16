@@ -40,3 +40,17 @@ def article_list(request):
     articles = Article.objects.all()
     return render(request, 'article_list.html', {'articles': articles})
 "book_list", "books"
+
+
+from .forms import SearchForm
+
+def book_search(request):
+    if request.method == 'POST':
+        form = SearchForm(request.POST)
+        if form.is_valid():
+            search_term = form.cleaned_data['search_term']
+            books = Book.objects.filter(title__icontains=search_term)
+            return render(request, 'bookshelf/book_list.html', {'books': books})
+    else:
+        form = SearchForm()
+    return render(request, 'bookshelf/book_search.html', {'form': form})
