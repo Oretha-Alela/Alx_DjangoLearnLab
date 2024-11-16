@@ -39,3 +39,4 @@ def delete_article(request, pk):
 def article_list(request):
     articles = Article.objects.all()
     return render(request, 'article_list.html', {'articles': articles})
+"book_list", "books"
