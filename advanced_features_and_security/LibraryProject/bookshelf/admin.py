@@ -37,3 +37,36 @@ class CustomUserAdmin(UserAdmin):
     )
 
 admin.site.register(CustomUser, CustomUserAdmin)
+
+
+
+
+
+from django.contrib import admin
+from django.contrib.auth.models import Group, Permission
+from .models import Article
+
+# Create a function to set up default groups and permissions
+def setup_groups_and_permissions():
+    # Get all permissions for the Article model
+    permissions = Permission.objects.filter(codename__in=['can_view', 'can_create', 'can_edit', 'can_delete'])
+
+    # Create Viewers group
+    viewers_group, created = Group.objects.get_or_create(name="Viewers")
+    viewers_group.permissions.set([permissions.get(codename="can_view")])
+
+    # Create Editors group
+    editors_group, created = Group.objects.get_or_create(name="Editors")
+    editors_group.permissions.set([permissions.get(codename="can_create"),
+                                   permissions.get(codename="can_edit"),
+                                   permissions.get(codename="can_view")])
+
+    # Create Admins group
+    admins_group, created = Group.objects.get_or_create(name="Admins")
+    admins_group.permissions.set([permissions.get(codename="can_create"),
+                                  permissions.get(codename="can_edit"),
+                                  permissions.get(codename="can_view"),
+                                  permissions.get(codename="can_delete")])
+
+admin.site.register(Article)
+
