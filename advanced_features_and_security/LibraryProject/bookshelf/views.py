@@ -42,15 +42,15 @@ def article_list(request):
 "book_list", "books"
 
 
-from .forms import SearchForm
+from .forms import ExampleForm
 
 def book_search(request):
     if request.method == 'POST':
-        form = SearchForm(request.POST)
+        form = ExampleForm(request.POST)
         if form.is_valid():
             search_term = form.cleaned_data['search_term']
             books = Book.objects.filter(title__icontains=search_term)
             return render(request, 'bookshelf/book_list.html', {'books': books})
     else:
-        form = SearchForm()
+        form = ExampleForm()
     return render(request, 'bookshelf/book_search.html', {'form': form})
