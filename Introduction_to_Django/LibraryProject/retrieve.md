@@ -1,4 +1,7 @@
 # Commands 
+
+books = Book.objects.all()
+
 print("Title:", book_1.title)
 print("Author:", book_1.author)
 print("Publication_year:", book_1.publication_year)
