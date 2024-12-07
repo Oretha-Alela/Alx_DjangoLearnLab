@@ -33,3 +33,17 @@ class CommentForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['content'].widget.attrs.update({'class': 'form-control'})
+
+
+
+
+from django import forms
+from .models import Post
+from taggit.forms import TagField  # Import TagField if using django-taggit
+
+class PostForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = ['title', 'content', 'tags']  # Include the tags field
+
+    tags = TagField()  # This field will allow users to add tags

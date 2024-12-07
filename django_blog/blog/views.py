@@ -127,3 +127,26 @@ class CommentDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 class CommentCreateView():
     ...
+
+
+
+
+
+from django.shortcuts import render
+from django.db.models import Q
+from .models import Post
+
+def post_search(request):
+    query = request.GET.get('q', '')  # Get the search query from the request
+    posts = Post.objects.filter(
+        Q(title__icontains=query) | 
+        Q(content__icontains=query) | 
+        Q(tags__name__icontains=query)
+    ).distinct()  # Ensure that each post appears only once
+    
+    return render(request, 'blog/post_search.html', {'posts': posts, 'query': query})
+
+
+def posts_by_tag(request, tag_name):
+    posts = Post.objects.filter(tags__name=tag_name)
+    return render(request, 'blog/post_tagged.html', {'posts': posts, 'tag_name': tag_name})
