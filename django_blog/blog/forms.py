@@ -47,3 +47,5 @@ class PostForm(forms.ModelForm):
         fields = ['title', 'content', 'tags']  # Include the tags field
 
     tags = TagField()  # This field will allow users to add tags
+
+TagWidget(), widgets
