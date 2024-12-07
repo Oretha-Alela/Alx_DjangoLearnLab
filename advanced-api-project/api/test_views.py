@@ -85,3 +85,4 @@ class BookAPITests(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data[0]['publication_year'], 2020)  # Ensure the first book is the oldest
 
+self.client.login
