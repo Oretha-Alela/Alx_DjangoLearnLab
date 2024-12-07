@@ -45,3 +45,65 @@ class BookDeleteView(generics.DestroyAPIView):
     serializer_class = BookSerializer
     permission_classes = [IsAuthenticated]  # Only authenticated users can delete a book
 
+
+
+
+
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import generics
+from .models import Book
+from .serializers import BookSerializer
+from .filters import BookFilter  
+from rest_framework.permissions import IsAuthenticated
+
+class BookListView(generics.ListAPIView):
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
+    permission_classes = []
+    
+    # Enable filtering, searching, and ordering
+    filter_backends = [DjangoFilterBackend]
+    filterset_class = BookFilter  
+    search_fields = ['title', 'author__name']  
+    ordering_fields = ['title', 'publication_year']  
+    ordering = ['title']  
+
+
+from rest_framework.filters import SearchFilter
+
+class BookListView(generics.ListAPIView):
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
+    permission_classes = []
+    
+    filter_backends = [DjangoFilterBackend, SearchFilter]  # Enable search along with filtering
+    filterset_class = BookFilter
+    search_fields = ['title', 'author__name']  # Fields searchable in the API
+    ordering_fields = ['title', 'publication_year']  # Fields by which the user can order results
+    ordering = ['title']  # Default ordering
+
+
+from rest_framework.filters import OrderingFilter
+
+class BookListView(generics.ListAPIView):
+    """
+    Retrieves a list of books with advanced filtering, searching, and ordering options.
+    
+    Query Parameters:
+    - title: Filter books by title (case-insensitive).
+    - publication_year: Filter books by exact publication year.
+    - author_name: Filter books by author's name (case-insensitive).
+    - search: Search across title and author name fields.
+    - ordering: Order books by title or publication year. 
+      Use '-field_name' for descending order (e.g., '-publication_year').
+    """
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
+    permission_classes = []
+    
+    filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]  # Enable filtering, search, and ordering
+    filterset_class = BookFilter  # Custom filter class
+    search_fields = ['title', 'author__name']  # Fields searchable in the API
+    ordering_fields = ['title', 'publication_year']  # Allow ordering by title or publication year
+    ordering = ['title']  # Default ordering by title
+

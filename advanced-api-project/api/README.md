@@ -29,3 +29,25 @@
 - **Method:** `DELETE`
 - **Permission:** Authenticated users only
 - **Description:** Allows an authenticated user to delete a book.
+
+
+
+# Advanced API - Book Model
+
+## Features
+This API supports the following features for the `Book` model:
+
+### Filtering
+- **`title`**: Filter books by title (e.g., `/api/books/?title=django`).
+- **`publication_year`**: Filter books by publication year (e.g., `/api/books/?publication_year=2024`).
+- **`author_name`**: Filter books by author's name (e.g., `/api/books/?author_name=John`).
+
+### Searching
+- Search across the `title` and `author_name` fields using the `search` parameter (e.g., `/api/books/?search=python`).
+
+### Ordering
+- Order results by `title` or `publication_year`. Use `-` for descending order (e.g., `/api/books/?ordering=-publication_year`).
+
+## Example Requests
+
+### Get all books with "django" in the title:
