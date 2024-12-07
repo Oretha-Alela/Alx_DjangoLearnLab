@@ -35,3 +35,17 @@
         <button type="submit">Post Comment</button>
     </form>
 {% endif %}
+
+
+<h2>{{ post.title }}</h2>
+<p>By {{ post.author }} on {{ post.created_at }}</p>
+<p>{{ post.content }}</p>
+
+<h3>Tags:</h3>
+<ul>
+    {% for tag in post.tags.all %}
+        <li><a href="{% url 'blog:tagged_posts' tag.name %}">{{ tag.name }}</a></li>
+    {% empty %}
+        <p>No tags available.</p>
+    {% endfor %}
+</ul>
