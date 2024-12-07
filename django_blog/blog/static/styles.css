@@ -1,0 +1,21 @@
+/* blog/static/styles.css */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+h1 {
+    text-align: center;
+}
+
+#posts {
+    margin: 20px;
+}
+
+.post {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin-bottom: 20px;
+}
