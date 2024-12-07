@@ -62,19 +62,13 @@ class Comment(models.Model):
         return reverse('blog:post_detail', kwargs={'pk': self.post.pk})
 
 
-from django.db import models
-
-class Tag(models.Model):
-    name = models.CharField(max_length=50, unique=True)
-
-    def __str__(self):
-        return self.name
+from taggit.managers import TaggableManager
 
 class Post(models.Model):
     title = models.CharField(max_length=100)
     content = models.TextField()
     author = models.ForeignKey('auth.User', on_delete=models.CASCADE)
-    tags = models.ManyToManyField(Tag, related_name='posts', blank=True)  # New field
+    tags = TaggableManager()  # Using django-taggit for tags
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -83,3 +77,4 @@ class Post(models.Model):
 
     def get_absolute_url(self):
         return reverse('blog:post_detail', kwargs={'pk': self.pk})
+
