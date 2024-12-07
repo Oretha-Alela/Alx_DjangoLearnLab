@@ -106,4 +106,5 @@ class BookListView(generics.ListAPIView):
     search_fields = ['title', 'author__name']  # Fields searchable in the API
     ordering_fields = ['title', 'publication_year']  # Allow ordering by title or publication year
     ordering = ['title']  # Default ordering by title
+    filters.OrderingFilter
 
