@@ -26,3 +26,14 @@ urlpatterns = [
 
 ]
 post/<int:pk>/update/
+
+from django.urls import path
+from . import views
+
+app_name = 'blog'
+
+urlpatterns = [
+    path('post/<int:pk>/', views.post_detail, name='post_detail'),
+    path('comment/<int:pk>/edit/', views.CommentUpdateView.as_view(), name='comment_edit'),
+    path('comment/<int:pk>/delete/', views.CommentDeleteView.as_view(), name='comment_delete'),
+]
