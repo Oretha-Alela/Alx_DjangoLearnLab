@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
+from rest_framework.authtoken.models import Token
 
 User = get_user_model()
 
@@ -26,3 +27,6 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = ('id', 'username', 'email', 'bio', 'profile_picture', 'followers', 'following')
         read_only_fields = ('followers', 'following')
+
+
+serializers.CharField(), Token.objects.create get_user_model().objects.create_user
