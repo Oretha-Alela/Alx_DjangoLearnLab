@@ -1,6 +1,10 @@
 from django.shortcuts import render
 
+<<<<<<< HEAD
 # Create your views here
+=======
+# Create your views here.
+>>>>>>> a77e1c164e46a4858fbe08b2e6af1e922df4a7f4
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 from rest_framework.views import APIView
