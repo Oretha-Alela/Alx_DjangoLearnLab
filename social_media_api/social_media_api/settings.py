@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-aozj)rm2j0^(^60x!l0sa^#g$vnbx89^tzira%d*^5(yd_r7xm'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -133,3 +133,15 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 10,
 }
 
+
+
+
+
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
+X_FRAME_OPTIONS = 'DENY'
+SECURE_SSL_REDIRECT = True  # If using HTTPs
+
+
+import os
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'fallback_key')
