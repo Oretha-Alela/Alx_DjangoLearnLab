@@ -80,11 +80,13 @@ def like_post(request, pk):
 def unlike_post(request, pk):
     post = Post.objects.filter(pk=pk).first()
     if not post:
-        return Response({"error": "Post not found."}, status=status.HTTP_404_NOT_FOUND)
-
+        return Response({"error": "Post not found."}, status=status.HTTP_404_NOT_FOUND) 
+    
+    generics.get_object_or_404(Post, pk=pk)
     like = Like.objects.filter(user=request.user, post=post).first()
     if like:
         like.delete()
         return Response({"message": "Post unliked."}, status=status.HTTP_200_OK)
     else:
         return Response({"error": "You have not liked this post."}, status=status.HTTP_400_BAD_REQUEST)
+    
